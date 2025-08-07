@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -15,6 +17,7 @@ import java.util.Collections;
 
 /*
 @Configuration - bean 등록, Bean 메소드가 있다.
+먼저 객체화를 하고 bean 메소드를 호출 후 반환되는 값을 bean 등록
 Bean 메소드는 무조건 싱글톤으로 처리된다.
  */
 @Configuration
@@ -58,4 +61,8 @@ public class WebSecurityConfiguration {
         };
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }

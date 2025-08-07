@@ -26,7 +26,7 @@ public class MyFileUtils {
     }
 
     public void makeFolders(String path) {
-        File file = new File(uploadDirectory, path);
+        File file = new File(path);
         if(!file.exists()) { // 해당 경로에 폴더가 없으면
             file.mkdirs(); // 폴더를 만든다
         }
@@ -55,7 +55,7 @@ public class MyFileUtils {
 
     //파일을 원하는 경로에 저장
     public void transferTo(MultipartFile mf, String path) throws IOException {
-        Path transPath = Paths.get(String.format("%s/%s", uploadDirectory, path)).toAbsolutePath();
+        Path transPath = Paths.get(path).toAbsolutePath();
         log.info("transPath: {}", transPath.toString());
         mf.transferTo(transPath.toFile());
     }
